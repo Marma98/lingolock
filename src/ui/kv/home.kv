@@ -1,0 +1,91 @@
+<HomeScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: "8dp"
+        padding: "16dp"
+
+        MDTopAppBar:
+            title: "LingoLock"
+            elevation: 2
+            right_action_items:
+                [["cog-outline", lambda x: setattr(app.root, 'current', 'settings')]]
+
+        ScrollView:
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: "16dp"
+                padding: "8dp"
+                adaptive_height: True
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "16dp"
+                    spacing: "8dp"
+                    radius: [12,]
+                    elevation: 2
+                    adaptive_height: True
+
+                    MDLabel:
+                        text: "Status"
+                        font_style: "H6"
+                        adaptive_height: True
+
+                    MDLabel:
+                        id: status_label
+                        text: "Loading..."
+                        markup: True
+                        adaptive_height: True
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "16dp"
+                    spacing: "8dp"
+                    radius: [12,]
+                    elevation: 2
+                    adaptive_height: True
+
+                    MDLabel:
+                        text: "Today's Stats"
+                        font_style: "H6"
+                        adaptive_height: True
+
+                    MDLabel:
+                        id: stats_label
+                        text: ""
+                        adaptive_height: True
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "16dp"
+                    spacing: "8dp"
+                    radius: [12,]
+                    elevation: 2
+                    adaptive_height: True
+
+                    MDLabel:
+                        text: "Recent Attempts"
+                        font_style: "H6"
+                        adaptive_height: True
+
+                    MDLabel:
+                        id: recent_label
+                        text: ""
+                        adaptive_height: True
+
+        MDBoxLayout:
+            size_hint_y: None
+            height: "56dp"
+            spacing: "8dp"
+            padding: "8dp", "4dp"
+
+            MDRaisedButton:
+                text: "Vocab"
+                on_release: app.root.current = "vocab"
+
+            MDRaisedButton:
+                text: "Sessions"
+                on_release: app.root.current = "sessions"
+
+            MDRaisedButton:
+                text: "Settings"
+                on_release: app.root.current = "settings"

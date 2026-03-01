@@ -1,0 +1,11 @@
+# Runtime dependencies (desktop development)
+kivy[base]==2.3.0
+kivymd==1.2.0
+pyjnius==1.6.1
+
+# Testing
+pytest>=8.0
+pytest-cov>=5.0
+
+# Optional: for desktop Levenshtein (built-in fallback used in challenge_engine.py)
+# python-Levenshtein>=0.25

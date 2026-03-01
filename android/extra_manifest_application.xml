@@ -1,0 +1,32 @@
+<!-- Injected into <application> block by buildozer -->
+
+<!-- Background monitor (foreground service, sticky) -->
+<service
+    android:name="org.kivy.android.PythonService"
+    android:exported="false"
+    android:foregroundServiceType="specialUse"
+    android:stopWithTask="false" />
+
+<!-- AccessibilityService -->
+<service
+    android:name="com.lingoblock.LingoAccessibilityService"
+    android:exported="true"
+    android:label="LingoLock Blocker"
+    android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+    <intent-filter>
+        <action android:name="android.accessibilityservice.AccessibilityService" />
+    </intent-filter>
+    <meta-data
+        android:name="android.accessibilityservice"
+        android:resource="@xml/accessibility_service_config" />
+</service>
+
+<!-- BroadcastReceiver for APP_BLOCKED + BOOT_COMPLETED -->
+<receiver
+    android:name="com.lingoblock.OverlayReceiver"
+    android:exported="false">
+    <intent-filter>
+        <action android:name="com.lingoblock.APP_BLOCKED" />
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+    </intent-filter>
+</receiver>

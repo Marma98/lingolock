@@ -1,0 +1,55 @@
+# PROJECT REQUIREMENTS: LingoBlock
+# Objective: Leverage social media addiction for language learning via "Gatekeeping" logic.
+
+## 1. PROJECT OVERVIEW
+LingoBlock is a cross-platform mobile application (Android priority, iOS ready) that acts as a blocker for social media apps. To unlock a social media session, the user must complete a language challenge (English-Italian).
+
+## 2. CORE FEATURES (MVP)
+- App Blocker/Gatekeeper: Detects the launch of specific pre-set apps (e.g., Instagram, TikTok).
+- Language Challenge:
+    - Translation tasks: Italian to English and English to Italian.
+    - Logic: Memory cards/Flashcards style.
+    - User-defined vocabulary: The user adds the words they want to learn.
+- Session Management:
+    - User-defined time slots (e.g., "Work Session": 08:00 - 12:00).
+    - Logic: Blocking is only active during these sessions.
+- Adaptive Difficulty (Anti-Procrastination):
+    - Tracking of "Unlock Attempts" within a session.
+    - If the user tries to access social media multiple times, the challenge becomes harder (more words to translate, shorter time limits).
+
+## 3. TECHNICAL STACK & ENVIRONMENT
+- Language: Python (as per user preference).
+- Framework: Kivy or KivyMD (for cross-platform Python mobile development).
+- Bridge: Pyjnius (Android) / Pyobjus (iOS) to interact with system APIs for app monitoring.
+- Environment: 
+    - Full Dockerization.
+    - Mandatory ".devcontainer" folder containing 'devcontainer.json' and 'Dockerfile'.
+    - VS Code as the primary IDE.
+- Deployment: 
+    - Buildozer for Android APK compilation inside the container.
+    - Xcode-ready structure for future iOS builds.
+
+## 4. ARCHITECTURE REQUIREMENTS (FOR CLAUDE CODE)
+- Setup a modular Python project structure.
+- Implementation of an "Accessibility Service" bridge (Android) to detect app launches.
+- Implementation of a local SQLite database for vocabulary and session tracking.
+- Automated Docker setup: The environment must include all dependencies (Android SDK, NDK, Python, Kivy) to allow "one-click" development.
+
+## 5. USER EXPERIENCE (UX) GOALS
+- Since the user is new to mobile development, the project must be "ready-to-run".
+- Clear logging and simple UI for word input.
+- Seamless overlay: The challenge screen must appear instantly when a social app is opened.
+
+## 6. PROJECT STRUCTURE SUGGESTION
+/lingoblock
+├── .devcontainer/
+│   ├── Dockerfile
+│   └── devcontainer.json
+├── src/
+│   ├── main.py
+│   ├── ui/
+│   ├── logic/
+│   └── database/
+├── assets/
+├── buildozer.spec
+└── requirements.txt

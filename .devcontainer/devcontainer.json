@@ -1,0 +1,41 @@
+{
+    "name": "LingoLock Android Dev",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+
+    // Mount workspace and a persistent .buildozer cache volume
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/home/developer/app,type=bind,consistency=cached",
+        "source=${localEnv:USERPROFILE}/.buildozer,target=/home/developer/.buildozer,type=bind,consistency=cached"
+    ],
+
+    "workspaceFolder": "/home/developer/app",
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.black-formatter",
+                "ms-python.pylint",
+                "kivy.kivy-vscode"
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/opt/venv/bin/python",
+                "editor.formatOnSave": true,
+                "[python]": {
+                    "editor.defaultFormatter": "ms-python.black-formatter"
+                },
+                "python.testing.pytestEnabled": true,
+                "python.testing.pytestArgs": ["tests"]
+            }
+        }
+    },
+
+    "postCreateCommand": "pip install -e . 2>/dev/null || true && echo 'Container ready. Run: buildozer android debug'",
+
+    "remoteUser": "developer",
+
+    "features": {}
+}

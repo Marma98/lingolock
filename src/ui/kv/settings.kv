@@ -1,0 +1,145 @@
+<SettingsScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "Settings"
+            elevation: 2
+            left_action_items: [["arrow-left", lambda x: setattr(app.root, 'current', 'home')]]
+
+        ScrollView:
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: "16dp"
+                spacing: "16dp"
+                adaptive_height: True
+
+                # ── Permissions ───────────────────────────────────────────
+                MDCard:
+                    orientation: "vertical"
+                    padding: "16dp"
+                    spacing: "8dp"
+                    radius: [12,]
+                    elevation: 2
+                    adaptive_height: True
+
+                    MDLabel:
+                        text: "Permissions"
+                        font_style: "H6"
+                        adaptive_height: True
+
+                    MDLabel:
+                        id: android_label
+                        text: ""
+                        adaptive_height: True
+
+                    MDLabel:
+                        id: perm_usage_label
+                        markup: True
+                        text: ""
+                        adaptive_height: True
+
+                    MDLabel:
+                        id: perm_overlay_label
+                        markup: True
+                        text: ""
+                        adaptive_height: True
+
+                    MDBoxLayout:
+                        spacing: "8dp"
+                        adaptive_height: True
+
+                        MDRaisedButton:
+                            text: "Usage Stats"
+                            on_release: root.req_usage()
+
+                        MDRaisedButton:
+                            text: "Overlay"
+                            on_release: root.req_overlay()
+
+                        MDRaisedButton:
+                            text: "Accessibility"
+                            on_release: root.req_accessibility()
+
+                # ── Blocked apps ──────────────────────────────────────────
+                MDCard:
+                    orientation: "vertical"
+                    padding: "16dp"
+                    spacing: "4dp"
+                    radius: [12,]
+                    elevation: 2
+                    adaptive_height: True
+
+                    MDLabel:
+                        text: "Blocked Apps"
+                        font_style: "H6"
+                        adaptive_height: True
+
+                    MDList:
+                        id: app_list
+                        adaptive_height: True
+
+                # ── Difficulty ────────────────────────────────────────────
+                MDCard:
+                    orientation: "vertical"
+                    padding: "16dp"
+                    spacing: "8dp"
+                    radius: [12,]
+                    elevation: 2
+                    adaptive_height: True
+
+                    MDLabel:
+                        text: "Difficulty"
+                        font_style: "H6"
+                        adaptive_height: True
+
+                    MDTextField:
+                        id: base_words_field
+                        hint_text: "Base words (default 3)"
+                        input_filter: "int"
+                        mode: "rectangle"
+
+                    MDTextField:
+                        id: increment_field
+                        hint_text: "Increment per attempt (default 2)"
+                        input_filter: "int"
+                        mode: "rectangle"
+
+                    MDTextField:
+                        id: base_time_field
+                        hint_text: "Base time seconds (default 30)"
+                        input_filter: "int"
+                        mode: "rectangle"
+
+                    MDTextField:
+                        id: decrement_field
+                        hint_text: "Time decrement per attempt (default 5)"
+                        input_filter: "int"
+                        mode: "rectangle"
+
+                    MDRaisedButton:
+                        text: "Save Difficulty"
+                        on_release: root.save_difficulty()
+
+                    MDLabel:
+                        id: diff_saved_label
+                        text: ""
+                        adaptive_height: True
+
+                # ── Debug ─────────────────────────────────────────────────
+                MDCard:
+                    orientation: "vertical"
+                    padding: "16dp"
+                    spacing: "8dp"
+                    radius: [12,]
+                    elevation: 2
+                    adaptive_height: True
+
+                    MDLabel:
+                        text: "Debug"
+                        font_style: "H6"
+                        adaptive_height: True
+
+                    MDRaisedButton:
+                        text: "Simulate Instagram Trigger"
+                        on_release: root.debug_trigger_challenge()

@@ -7,7 +7,7 @@ On desktop: triggered by the debug button in SettingsScreen.
 from __future__ import annotations
 import time
 from kivy.clock import Clock
-from kivy.properties import StringProperty, NumericProperty, ListProperty
+from kivy.properties import StringProperty, NumericProperty, ListProperty, BooleanProperty
 from kivymd.uix.screen import MDScreen
 from logic.challenge_engine import (
     build_challenge, compute_difficulty, evaluate_answer,
@@ -33,6 +33,7 @@ class ChallengeScreen(MDScreen):
     prompt_text      = StringProperty("")
     feedback_text    = StringProperty("")
     result_color     = ListProperty([1, 1, 1, 1])
+    on_android       = BooleanProperty(_ON_ANDROID)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -178,6 +179,10 @@ class ChallengeScreen(MDScreen):
                 activity.startActivity(intent)
         except Exception as exc:
             print(f"[challenge] failed to open target app: {exc}")
+
+    def exit_desktop(self):
+        self._cancel_timer()
+        self.manager.current = "home"
 
     # ── Desktop debug trigger ─────────────────────────────────────────────────
 
